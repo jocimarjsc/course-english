@@ -48,10 +48,10 @@
   <title>Curso</title>
 </head>
 
-<body class="flex bg-gray-dark overscroll-none">
-  <aside class="w-screen h-screen max-w-72 bg-blue-light overscroll-y-contain p-8">
+<body class="flex bg-gray-dark">
+  <aside class="w-screen h-screen max-w-72 bg-blue-light p-8">
     <div class="mb-8"><span>Logo</span></div>
-    <nav class="flex flex-col">
+    <nav class="flex flex-col text-gray-dark">
       <a class="p-3 mb-2 transition duration-150 ease-out hover:ease-in rounded-lg hover:bg-blue-hover" href="#">A1 -
         Iniciante</a>
       <a class="p-3 mb-2 transition duration-150 ease-out hover:ease-in rounded-lg hover:bg-blue-hover" href="#">A2 -
@@ -66,15 +66,56 @@
         Fluente</a>
     </nav>
   </aside>
-  <main class="w-screen h-screen bg-white overscroll-y-contain p-8">
+  <main class="w-screen h-screen bg-white p-8 overflow-hidden">
     <header class="mb-8">
       <h1>A1 - Iniciante</h1>
     </header>
     <div class="flex gap-8">
       <div class="rounded-lg bg-blue-hover">
-        <iframe  width="1080" height="620" src="https://www.youtube.com/embed/UL-qh3-dxlo?&autoplay=1" frameborder="0" allowfullscreen></iframe>
+        <iframe width="1080" height="620" src="https://www.youtube.com/embed/UL-qh3-dxlo?&autoplay=1" frameborder="0"
+          allowfullscreen></iframe>
       </div>
-      <div class="list">lista</div>
+      <div class="w-full ring-1 rounded-lg p-8 overflow-y-scroll h-[620px]">
+        <h1 class="mb-8 text-lg">Conteúdo</h1>
+
+        <details class="w-full text-gray-dark rounded-lg p-4 bg-blue-light open:ring-1  mb-4">
+          <summary class="cursor-pointer flex justify-between items-center ist-none text-lg">Gramática <span class="text-sm">22 aulas</span></summary>
+          <ul class="list-none p-4">
+            <li class="mb-3">1 Present Simple</li>
+            <li class="mb-3">2 Pronouns</li>
+            <li class="mb-3">1 Present Simple</li>
+            <li class="mb-3">2 Pronouns</li>
+            <li class="mb-3">1 Present Simple</li>
+            <li class="mb-3">2 Pronouns</li>
+            <li class="mb-3">1 Present Simple</li>
+            <li class="mb-3">2 Pronouns</li>
+            <li class="mb-3">1 Present Simple</li>
+            <li class="mb-3">2 Pronouns</li>
+            <li class="mb-3">1 Present Simple</li>
+            <li class="mb-3">2 Pronouns</li>
+            <li class="mb-3">1 Present Simple</li>
+            <li class="mb-3">2 Pronouns</li>
+            <li class="mb-3">1 Present Simple</li>
+            <li class="mb-3">2 Pronouns</li>
+          </ul>
+        </details>
+
+        <details class="w-full cursor-pointer text-gray-dark rounded-lg p-4 bg-blue-light open:ring-1 mb-4">
+          <summary class="flex justify-between items-center ist-none text-lg">Vocabulário <span class="text-sm">40 aulas</span></summary>
+          <ul class="list-none">
+            <li>1 Present Simple</li>
+            <li>2 Pronouns</li>
+          </ul>
+        </details>
+
+        <details class="w-full cursor-pointer text-gray-dark rounded-lg p-4 bg-blue-light open:ring-1 mb-4">
+          <summary class="flex justify-between items-center ist-none text-lg">Tópicos <span class="text-sm">15 aulas</span></summary>
+          <ul class="list-none">
+            <li>1 Present Simple</li>
+            <li>2 Pronouns</li>
+          </ul>
+        </details>
+      </div>
     </div>
   </main>
 </body>
