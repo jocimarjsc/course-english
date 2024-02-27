@@ -1,0 +1,82 @@
+<!doctype html>
+<html class="" lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: ["class"],
+      theme: {
+        screens: {
+          sm: '480px',
+          md: '768px',
+          lg: '976px',
+          xl: '1440px',
+        },
+        colors: {
+          "white": "#f5f5f5",
+          'blue': '#1fb6ff',
+          "blue-light": "#DDE4F1",
+          "blue-hover": "#C6CDD8",
+          'purple': '#7e5bef',
+          'pink': '#ff49db',
+          'orange': '#ff7849',
+          'green': '#13ce66',
+          'yellow': '#ffc82c',
+          'gray-dark': '#273444',
+          'gray': '#8492a6',
+          'gray-light': '#d3dce6',
+        },
+        fontFamily: {
+          sans: ['Graphik', 'sans-serif'],
+          serif: ['Merriweather', 'serif'],
+        },
+        extend: {
+          spacing: {
+            '128': '32rem',
+            '144': '36rem',
+          },
+          borderRadius: {
+            '4xl': '2rem',
+          }
+        }
+      }
+    }
+  </script>
+  <title>Curso</title>
+</head>
+
+<body class="flex bg-gray-dark overscroll-none">
+  <aside class="w-screen h-screen max-w-72 bg-blue-light overscroll-y-contain p-8">
+    <div class="mb-8"><span>Logo</span></div>
+    <nav class="flex flex-col">
+      <a class="p-3 mb-2 transition duration-150 ease-out hover:ease-in rounded-lg hover:bg-blue-hover" href="#">A1 -
+        Iniciante</a>
+      <a class="p-3 mb-2 transition duration-150 ease-out hover:ease-in rounded-lg hover:bg-blue-hover" href="#">A2 -
+        Básico</a>
+      <a class="p-3 mb-2 bg-blue-hover transition duration-150 ease-out hover:ease-in rounded-lg hover:bg-blue-hover"
+        href="#">B1 - Intermediário</a>
+      <a class="p-3 mb-2 transition duration-150 ease-out hover:ease-in rounded-lg hover:bg-blue-hover" href="#">B2 -
+        Int. Avançado</a>
+      <a class="p-3 mb-2 transition duration-150 ease-out hover:ease-in rounded-lg hover:bg-blue-hover" href="#">C1 -
+        Avançado</a>
+      <a class="p-3 mb-2 transition duration-150 ease-out hover:ease-in rounded-lg hover:bg-blue-hover" href="#">C2 -
+        Fluente</a>
+    </nav>
+  </aside>
+  <main class="w-screen h-screen bg-white overscroll-y-contain p-8">
+    <header class="mb-8">
+      <h1>A1 - Iniciante</h1>
+    </header>
+    <div class="flex gap-8">
+      <div class="rounded-lg bg-blue-hover">
+        <iframe  width="1080" height="620" src="https://www.youtube.com/embed/UL-qh3-dxlo?&autoplay=1" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <div class="list">lista</div>
+    </div>
+  </main>
+</body>
+
+</html>
