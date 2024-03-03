@@ -4,16 +4,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="css" href="style.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       darkMode: ["class"],
       theme: {
         screens: {
-          sm: '480px',
+          sm: '640px',
           md: '768px',
-          lg: '976px',
-          xl: '1440px',
+          lg: '1024px',
+          xl: '1280px',
         },
         colors: {
           "white": "#f5f5f5",
@@ -49,7 +50,8 @@
 </head>
 
 <body class="flex bg-gray-dark">
-  <aside class="w-screen h-screen max-w-72 bg-blue-light p-8">
+  <aside class="relative w-screen h-screen max-w-72 bg-blue-light p-8">
+    <div className="fixed top-0 left-0 right-0 z-40 ">
     <div class="mb-8"><span>Logo</span></div>
     <nav class="flex flex-col text-gray-dark">
       <a class="p-3 mb-2 transition duration-150 ease-out hover:ease-in rounded-lg hover:bg-blue-hover" href="#">A1 -
@@ -65,21 +67,23 @@
       <a class="p-3 mb-2 transition duration-150 ease-out hover:ease-in rounded-lg hover:bg-blue-hover" href="#">C2 -
         Fluente</a>
     </nav>
+  </div>
   </aside>
-  <main class="w-screen h-screen bg-white p-8 overflow-hidden">
+  <main class="w-screen bg-white p-8 xl:overflow-hidden">
     <header class="mb-8">
       <h1>A1 - Iniciante</h1>
     </header>
-    <div class="flex gap-8">
-      <div class="rounded-lg bg-blue-hover">
-        <iframe width="1080" height="620" src="https://www.youtube.com/embed/UL-qh3-dxlo?&autoplay=1" frameborder="0"
-          allowfullscreen></iframe>
+    <div class="flex xl:flex-row xl:h-full h-auto flex-col gap-8">
+      <div class="flex-1 rounded-lg bg-blue-hover">
+        <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/Z19NAX_gWxI" frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope;" allowfullscreen></iframe>
       </div>
-      <div class="w-full ring-1 rounded-lg p-8 overflow-y-scroll h-[620px]">
+      <div class="xl:w-1/4 w-full ring-1 rounded-lg p-8 xl:overflow-y-auto xl:h-full">
         <h1 class="mb-8 text-lg">Conteúdo</h1>
 
         <details class="w-full text-gray-dark rounded-lg p-4 bg-blue-light open:ring-1  mb-4">
-          <summary class="cursor-pointer flex justify-between items-center ist-none text-lg">Gramática <span class="text-sm">22 aulas</span></summary>
+          <summary class="cursor-pointer flex justify-between items-center ist-none text-lg">Gramática <span
+              class="text-sm">22 aulas</span></summary>
           <ul class="list-none p-4">
             <li class="mb-3">1 Present Simple</li>
             <li class="mb-3">2 Pronouns</li>
@@ -101,7 +105,8 @@
         </details>
 
         <details class="w-full cursor-pointer text-gray-dark rounded-lg p-4 bg-blue-light open:ring-1 mb-4">
-          <summary class="flex justify-between items-center ist-none text-lg">Vocabulário <span class="text-sm">40 aulas</span></summary>
+          <summary class="flex justify-between items-center ist-none text-lg">Vocabulário <span class="text-sm">40
+              aulas</span></summary>
           <ul class="list-none">
             <li>1 Present Simple</li>
             <li>2 Pronouns</li>
@@ -109,7 +114,8 @@
         </details>
 
         <details class="w-full cursor-pointer text-gray-dark rounded-lg p-4 bg-blue-light open:ring-1 mb-4">
-          <summary class="flex justify-between items-center ist-none text-lg">Tópicos <span class="text-sm">15 aulas</span></summary>
+          <summary class="flex justify-between items-center ist-none text-lg">Tópicos <span class="text-sm">15
+              aulas</span></summary>
           <ul class="list-none">
             <li>1 Present Simple</li>
             <li>2 Pronouns</li>
