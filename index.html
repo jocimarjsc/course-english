@@ -16,20 +16,20 @@
           lg: '1024px',
           xl: '1280px',
         },
-        colors: {
-          "white": "#f5f5f5",
-          'blue': '#1fb6ff',
-          "blue-light": "#DDE4F1",
-          "blue-hover": "#C6CDD8",
-          'purple': '#7e5bef',
-          'pink': '#ff49db',
-          'orange': '#ff7849',
-          'green': '#13ce66',
-          'yellow': '#ffc82c',
-          'gray-dark': '#273444',
-          'gray': '#8492a6',
-          'gray-light': '#d3dce6',
-        },
+        // colors: {
+        //   "white": "#f5f5f5",
+        //   'blue': '#1fb6ff',
+        //   "blue-light": "#DDE4F1",
+        //   "blue-hover": "#C6CDD8",
+        //   'purple': '#7e5bef',
+        //   'pink': '#ff49db',
+        //   'orange': '#ff7849',
+        //   'green': '#13ce66',
+        //   'yellow': '#ffc82c',
+        //   'gray-dark': '#070F2B',
+        //   'gray': '#1B1A55',
+        //   'gray-light': '#d3dce6',
+        // },
         fontFamily: {
           sans: ['Graphik', 'sans-serif'],
           serif: ['Merriweather', 'serif'],
@@ -49,9 +49,211 @@
   <title>Curso</title>
 </head>
 
-<body class="flex bg-gray-dark">
-  <aside class="relative w-screen h-screen max-w-72 bg-blue-light p-8">
-    <div className="fixed top-0 left-0 right-0 z-40 ">
+<body class="grid grid-cols-1 grid-rows-1 h-full min-h-screen bg-slate-700 text-gray-100 lg:grid-cols-1">
+  <div class="overflow-auto h-screen">
+    <div class="flex flex-row h-full box-border overflow-hidden">
+      <!-- sidebar -->
+      <div id="widthSidebar" class="flex flex-col self-stretch max-w-60 h-full border-l border-l-gray-800 bg-slate-800 transition-all w-full">
+        <div class="flex flex-col h-full">
+          <div class="flex flex-col md:overflow-auto h-full">
+            <div class="p-4 md:p-3">
+              <div class="flex flex-col gap-3">
+                <div class="flex pl-3 items-center gap-2 self-stretch">
+                  <h2 class="w-full text-base md:text-xl text-gray-100 font-bold">Nível Inglês</h2>
+                  <button id="buttonSidebar" type="button"
+                    class="flex w-fit rounded text-2xl transition-colors ease-in-out duration-200 border-none cursor-pointer bg-transparent hover:bg-slate-900 text-gray-200 p-2">
+                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em"
+                      width="1em" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M18.1086 16.7491L4.86475 16.7491" stroke="currentColor" stroke-width="1.25"
+                        stroke-linecap="round" stroke-linejoin="round"></path>
+                      <path d="M19.1345 11.0412H4.86475" stroke="currentColor" stroke-width="1.25"
+                        stroke-linecap="round" stroke-linejoin="round"></path>
+                      <path d="M19.1345 5.69012H4.86475" stroke="currentColor" stroke-width="1.25"
+                        stroke-linecap="round" stroke-linejoin="round"></path>
+                      <path d="M17.0835 18.6667L19.1348 16.6154L17.0835 14.5641" stroke="currentColor"
+                        stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  </button>
+                </div>
+                <!-- level english -->
+                <div id="listLevelEnglish" class="flex flex-col gap-2">
+                  <a class="p-3 mb-2 transition duration-150 ease-out hover:ease-in rounded-lg hover:bg-slate-900"
+                    href="#">A1 - Iniciante</a>
+                  <a class="p-3 mb-2 transition duration-150 ease-out hover:ease-in rounded-lg hover:bg-slate-900"
+                    href="#">A2 - Básico</a>
+                  <a class="p-3 mb-2 transition duration-150 ease-out hover:ease-in rounded-lg hover:bg-slate-900"
+                    href="#">B1 - Intermediário</a>
+                  <a class="p-3 mb-2 transition duration-150 ease-out hover:ease-in rounded-lg hover:bg-slate-900"
+                    href="#">B2 - Int. Avançado</a>
+                  <a class="p-3 mb-2 transition duration-150 ease-out hover:ease-in rounded-lg hover:bg-slate-900"
+                    href="#">C1 - Avançado</a>
+                  <a class="p-3 mb-2 transition duration-150 ease-out hover:ease-in rounded-lg hover:bg-slate-900"
+                    href="#">C2 - Fluente</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row w-full">
+        <!-- player video -->
+        <div class="flex flex-col flex-1 flex-shrink-0 w-full md:overflow-y-auto transition-[height]">
+          <div class="flex flex-col w-full transition-all md:h-[calc(80vh-80px)]">
+            <div class="relative md:pt-0 md:h-full">
+              <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/Z19NAX_gWxI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope;" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+        <!-- list video -->
+        <div id="containerList" class="flex flex-col self-stretch md:max-w-96 h-full border-l border-l-slate-800 transition-all w-full">
+          <div class="flex flex-col h-full">
+            <div class="flex flex-col overflow-auto h-full">
+              <div class="p-4 md:p-3">
+                <div class="flex flex-col gap-3">
+                  <!-- para ocultar a lista, preciso remover o PL-3 -->
+                  <div id="removeTitleContent" class="flex pl-3 items-center gap-2 self-stretch">
+                    <!-- para ocultar a lista, preciso colocar hidden -->
+                    <h2 class="w-full text-base md:text-xl text-gray-100 font-bold">Conteúdo</h2>
+                    <button id="buttonList" type="button"
+                      class="flex w-fit rounded text-2xl transition-colors ease-in-out duration-200 border-none cursor-pointer bg-transparent hover:bg-slate-900 text-gray-200 p-2">
+                      <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em"
+                        width="1em" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18.1086 16.7491L4.86475 16.7491" stroke="currentColor" stroke-width="1.25"
+                          stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M19.1345 11.0412H4.86475" stroke="currentColor" stroke-width="1.25"
+                          stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M19.1345 5.69012H4.86475" stroke="currentColor" stroke-width="1.25"
+                          stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M17.0835 18.6667L19.1348 16.6154L17.0835 14.5641" stroke="currentColor"
+                          stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>
+                    </button>
+                  </div>
+                  <!-- list all videos -->
+                  <!-- para ocultar a lista, preciso colocar hidden -->
+                  <div id="removeAllList" class="flex flex-col gap-2">
+                    <div class="rounded border border-slate-800">
+                      <div class="group flex items-center p-4 gap-4 w-full transition-colors">
+                        <div class="overflow-hidden w-full">
+                          <details
+                            class="w-full text-gray-dark rounded-lg p-4 transition duration-150 ease-out hover:ease-in bg-slate-800 hover:bg-slate-900 mb-4">
+                            <summary class="cursor-pointer flex justify-between items-center list-none text-lg">
+                              Gramática
+                              <span class="text-sm">22 aulas</span>
+                            </summary>
+                            <ul class="list-none p-4">
+                              <li class="mb-3">1 Present Simple</li>
+                              <li class="mb-3">2 Pronouns</li>
+                              <li class="mb-3">1 Present Simple</li>
+                              <li class="mb-3">2 Pronouns</li>
+                              <li class="mb-3">1 Present Simple</li>
+                              <li class="mb-3">2 Pronouns</li>
+                              <li class="mb-3">1 Present Simple</li>
+                              <li class="mb-3">2 Pronouns</li>
+                              <li class="mb-3">1 Present Simple</li>
+                              <li class="mb-3">2 Pronouns</li>
+                              <li class="mb-3">1 Present Simple</li>
+                              <li class="mb-3">2 Pronouns</li>
+                              <li class="mb-3">1 Present Simple</li>
+                              <li class="mb-3">2 Pronouns</li>
+                              <li class="mb-3">1 Present Simple</li>
+                              <li class="mb-3">2 Pronouns</li>
+                            </ul>
+                          </details>
+
+                          <details
+                            class="w-full cursor-pointer text-gray-dark rounded-lg p-4 transition duration-150 ease-out hover:ease-in bg-slate-800 hover:bg-slate-900 mb-4">
+                            <summary class="flex justify-between items-center ist-none text-lg">Vocabulário <span
+                                class="text-sm">40
+                                aulas</span></summary>
+                            <ul class="list-none">
+                              <li>1 Present Simple</li>
+                              <li>2 Pronouns</li>
+                            </ul>
+                          </details>
+
+                          <details
+                            class="w-full cursor-pointer text-gray-dark rounded-lg p-4 transition duration-150 ease-out hover:ease-in bg-slate-800 hover:bg-slate-900 mb-4">
+                            <summary class="flex justify-between items-center ist-none text-lg">Tópicos <span
+                                class="text-sm">15
+                                aulas</span></summary>
+                            <ul class="list-none">
+                              <li>1 Present Simple</li>
+                              <li>2 Pronouns</li>
+                            </ul>
+                          </details>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+<script>
+  const widthSidebar = document.querySelector("#widthSidebar")
+  const h2Sidebar = widthSidebar.querySelector("h2")
+  const buttonSidebar = document.querySelector("#buttonSidebar")
+  const listLevelEnglish = document.querySelector("#listLevelEnglish")
+  const english = Array.from(listLevelEnglish.querySelectorAll("a"))
+  const pl3 = widthSidebar.querySelector(".pl-3")
+  let oldEnglish = []
+
+  buttonSidebar.addEventListener("click", event => {
+    event.preventDefault()
+    h2Sidebar.classList.toggle("hidden")
+    pl3.classList.toggle("pl-3")
+    listLevelEnglish.classList.toggle("items-center")
+    listLevelEnglish.classList.toggle("justify-center")
+
+    if (widthSidebar.classList[9] === "w-full") {
+      widthSidebar.classList.remove("w-full")
+      widthSidebar.classList.add("w-16")
+
+      english.forEach((level, index) => {
+        const [sigla, _] = level.innerText.split("-")
+        oldEnglish.push(level.innerText)
+        listLevelEnglish.querySelectorAll("a")[index].innerText = `${sigla}`
+      })
+    } else {
+      widthSidebar.classList.remove("w-16")
+      widthSidebar.classList.add("w-full")
+
+      oldEnglish?.forEach((level, index) => {
+        listLevelEnglish.querySelectorAll("a")[index].innerText = `${level}`
+      })
+    }
+  })
+
+  const removeAllList = document.querySelector("#removeAllList")
+  const removeTitleContent = document.querySelector("#removeTitleContent")
+  const h2 = removeTitleContent.querySelector("h2")
+  const containerList = document.querySelector("#containerList")
+
+  const buttonList = document.querySelector("#buttonList")
+
+  buttonList.addEventListener("click", (event) => {
+    event.preventDefault()
+    removeTitleContent.classList.toggle("pl-3")
+    h2.classList.toggle("hidden")
+
+    removeAllList.classList.toggle("hidden")
+    if (containerList.classList[8] === "w-full") {
+      containerList.classList.remove("w-full")
+      containerList.classList.add("w-16")
+    } else {
+      containerList.classList.add("w-full")
+      containerList.classList.remove("w-16")
+    }
+  })
+</script>
+<!-- <body class="flex bg-gray-dark">
+  <aside class="relative w-screen h-screen sticky top-0  max-w-72 bg-blue-light p-8">
     <div class="mb-8"><span>Logo</span></div>
     <nav class="flex flex-col text-gray-dark">
       <a class="p-3 mb-2 transition duration-150 ease-out hover:ease-in rounded-lg hover:bg-blue-hover" href="#">A1 -
@@ -67,63 +269,69 @@
       <a class="p-3 mb-2 transition duration-150 ease-out hover:ease-in rounded-lg hover:bg-blue-hover" href="#">C2 -
         Fluente</a>
     </nav>
-  </div>
   </aside>
-  <main class="w-screen bg-white p-8 xl:overflow-hidden">
+  <main class="w-screen bg-white p-8">
     <header class="mb-8">
       <h1>A1 - Iniciante</h1>
     </header>
-    <div class="flex xl:flex-row xl:h-full h-auto flex-col gap-8">
-      <div class="flex-1 rounded-lg bg-blue-hover">
-        <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/Z19NAX_gWxI" frameborder="0"
-          allow="accelerometer; autoplay; encrypted-media; gyroscope;" allowfullscreen></iframe>
-      </div>
-      <div class="xl:w-1/4 w-full ring-1 rounded-lg p-8 xl:overflow-y-auto xl:h-full">
-        <h1 class="mb-8 text-lg">Conteúdo</h1>
-
-        <details class="w-full text-gray-dark rounded-lg p-4 bg-blue-light open:ring-1  mb-4">
-          <summary class="cursor-pointer flex justify-between items-center ist-none text-lg">Gramática <span
-              class="text-sm">22 aulas</span></summary>
-          <ul class="list-none p-4">
-            <li class="mb-3">1 Present Simple</li>
-            <li class="mb-3">2 Pronouns</li>
-            <li class="mb-3">1 Present Simple</li>
-            <li class="mb-3">2 Pronouns</li>
-            <li class="mb-3">1 Present Simple</li>
-            <li class="mb-3">2 Pronouns</li>
-            <li class="mb-3">1 Present Simple</li>
-            <li class="mb-3">2 Pronouns</li>
-            <li class="mb-3">1 Present Simple</li>
-            <li class="mb-3">2 Pronouns</li>
-            <li class="mb-3">1 Present Simple</li>
-            <li class="mb-3">2 Pronouns</li>
-            <li class="mb-3">1 Present Simple</li>
-            <li class="mb-3">2 Pronouns</li>
-            <li class="mb-3">1 Present Simple</li>
-            <li class="mb-3">2 Pronouns</li>
-          </ul>
-        </details>
-
-        <details class="w-full cursor-pointer text-gray-dark rounded-lg p-4 bg-blue-light open:ring-1 mb-4">
-          <summary class="flex justify-between items-center ist-none text-lg">Vocabulário <span class="text-sm">40
-              aulas</span></summary>
-          <ul class="list-none">
-            <li>1 Present Simple</li>
-            <li>2 Pronouns</li>
-          </ul>
-        </details>
-
-        <details class="w-full cursor-pointer text-gray-dark rounded-lg p-4 bg-blue-light open:ring-1 mb-4">
-          <summary class="flex justify-between items-center ist-none text-lg">Tópicos <span class="text-sm">15
-              aulas</span></summary>
-          <ul class="list-none">
-            <li>1 Present Simple</li>
-            <li>2 Pronouns</li>
-          </ul>
-        </details>
-      </div>
+    <div class="flex-1 rounded-lg bg-blue-hover">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/Z19NAX_gWxI" frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope;" allowfullscreen></iframe>
+    </div>
+    <div class="flex-1 rounded-lg bg-blue-hover">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/Z19NAX_gWxI" frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope;" allowfullscreen></iframe>
+    </div>
+    <div class="flex-1 rounded-lg bg-blue-hover">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/Z19NAX_gWxI" frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope;" allowfullscreen></iframe>
     </div>
   </main>
-</body>
+  <aside class="sticky top-0  max-w-72  p-8">
+    <div class="mb-8"><span>Conteúdo</span></div>
+    <nav class="flex flex-col text-gray-dark overflow-y-auto">
+      <details class="w-full text-gray-dark rounded-lg p-4 bg-blue-light open:ring-1  mb-4">
+        <summary class="cursor-pointer flex justify-between items-center ist-none text-lg">Gramática <span
+            class="text-sm">22 aulas</span></summary>
+        <ul class="list-none p-4">
+          <li class="mb-3">1 Present Simple</li>
+          <li class="mb-3">2 Pronouns</li>
+          <li class="mb-3">1 Present Simple</li>
+          <li class="mb-3">2 Pronouns</li>
+          <li class="mb-3">1 Present Simple</li>
+          <li class="mb-3">2 Pronouns</li>
+          <li class="mb-3">1 Present Simple</li>
+          <li class="mb-3">2 Pronouns</li>
+          <li class="mb-3">1 Present Simple</li>
+          <li class="mb-3">2 Pronouns</li>
+          <li class="mb-3">1 Present Simple</li>
+          <li class="mb-3">2 Pronouns</li>
+          <li class="mb-3">1 Present Simple</li>
+          <li class="mb-3">2 Pronouns</li>
+          <li class="mb-3">1 Present Simple</li>
+          <li class="mb-3">2 Pronouns</li>
+        </ul>
+      </details>
+
+      <details class="w-full cursor-pointer text-gray-dark rounded-lg p-4 bg-blue-light open:ring-1 mb-4">
+        <summary class="flex justify-between items-center ist-none text-lg">Vocabulário <span class="text-sm">40
+            aulas</span></summary>
+        <ul class="list-none">
+          <li>1 Present Simple</li>
+          <li>2 Pronouns</li>
+        </ul>
+      </details>
+
+      <details class="w-full cursor-pointer text-gray-dark rounded-lg p-4 bg-blue-light open:ring-1 mb-4">
+        <summary class="flex justify-between items-center ist-none text-lg">Tópicos <span class="text-sm">15
+            aulas</span></summary>
+        <ul class="list-none">
+          <li>1 Present Simple</li>
+          <li>2 Pronouns</li>
+        </ul>
+      </details>
+    </nav>
+  </aside>
+</body> -->
 
 </html>
