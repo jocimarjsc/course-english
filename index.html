@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="css" href="style.css">
+  <link rel="stylesheet" type="css" href="./styles/styles.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -53,7 +53,8 @@
   <div class="overflow-auto h-screen">
     <div class="flex flex-row h-full box-border overflow-hidden">
       <!-- sidebar -->
-      <div id="widthSidebar" class="flex flex-col self-stretch max-w-60 h-full border-l border-l-gray-800 bg-slate-800 transition-all w-full">
+      <div id="widthSidebar"
+        class="flex flex-col self-stretch max-w-60 h-full border-l border-l-gray-800 bg-slate-800 transition-all w-full">
         <div class="flex flex-col h-full">
           <div class="flex flex-col md:overflow-auto h-full">
             <div class="p-4 md:p-3">
@@ -100,12 +101,14 @@
         <div class="flex flex-col flex-1 flex-shrink-0 w-full md:overflow-y-auto transition-[height]">
           <div class="flex flex-col w-full transition-all md:h-[calc(80vh-80px)]">
             <div class="relative md:pt-0 md:h-full">
-              <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/Z19NAX_gWxI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope;" allowfullscreen></iframe>
+              <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/Z19NAX_gWxI" frameborder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope;" allowfullscreen></iframe>
             </div>
           </div>
         </div>
         <!-- list video -->
-        <div id="containerList" class="flex flex-col self-stretch md:max-w-96 h-full border-l border-l-slate-800 transition-all w-full">
+        <div id="containerList"
+          class="flex flex-col self-stretch md:max-w-96 h-full border-l border-l-slate-800 transition-all w-full">
           <div class="flex flex-col h-full">
             <div class="flex flex-col overflow-auto h-full">
               <div class="p-4 md:p-3">
@@ -195,6 +198,7 @@
       </div>
     </div>
 </body>
+<script type="module" src="./js/index.js"></script>
 <script>
   const widthSidebar = document.querySelector("#widthSidebar")
   const h2Sidebar = widthSidebar.querySelector("h2")
@@ -204,31 +208,32 @@
   const pl3 = widthSidebar.querySelector(".pl-3")
   let oldEnglish = []
 
-  buttonSidebar.addEventListener("click", event => {
-    event.preventDefault()
-    h2Sidebar.classList.toggle("hidden")
-    pl3.classList.toggle("pl-3")
-    listLevelEnglish.classList.toggle("items-center")
-    listLevelEnglish.classList.toggle("justify-center")
+  // buttonSidebar.addEventListener("click", event => {
+  //   event.preventDefault()
+  //   // h2Sidebar.classList.toggle("hidden")
+  //   // pl3.classList.toggle("pl-3")
+  //   // listLevelEnglish.classList.toggle("items-center")
+  //   // listLevelEnglish.classList.toggle("justify-center")
 
-    if (widthSidebar.classList[9] === "w-full") {
-      widthSidebar.classList.remove("w-full")
-      widthSidebar.classList.add("w-16")
+  //   if (widthSidebar.classList[9] === "w-full") {
+  //     widthSidebar.classList.remove("w-full")
+  //     widthSidebar.classList.add("w-16")
 
-      english.forEach((level, index) => {
-        const [sigla, _] = level.innerText.split("-")
-        oldEnglish.push(level.innerText)
-        listLevelEnglish.querySelectorAll("a")[index].innerText = `${sigla}`
-      })
-    } else {
-      widthSidebar.classList.remove("w-16")
-      widthSidebar.classList.add("w-full")
+  //     english.forEach((level, index) => {
+  //       const [sigla, _] = level.innerText.split("-")
+  //       oldEnglish.push(level.innerText)
+  //       listLevelEnglish.querySelectorAll("a")[index].innerText = `${sigla}`
+  //     })
+  //   }
+  //   else {
+  //     widthSidebar.classList.remove("w-16")
+  //     widthSidebar.classList.add("w-full")
 
-      oldEnglish?.forEach((level, index) => {
-        listLevelEnglish.querySelectorAll("a")[index].innerText = `${level}`
-      })
-    }
-  })
+  //     oldEnglish?.forEach((level, index) => {
+  //       listLevelEnglish.querySelectorAll("a")[index].innerText = `${level}`
+  //     })
+  //   }
+  // })
 
   const removeAllList = document.querySelector("#removeAllList")
   const removeTitleContent = document.querySelector("#removeTitleContent")
@@ -237,20 +242,20 @@
 
   const buttonList = document.querySelector("#buttonList")
 
-  buttonList.addEventListener("click", (event) => {
-    event.preventDefault()
-    removeTitleContent.classList.toggle("pl-3")
-    h2.classList.toggle("hidden")
+  // buttonList.addEventListener("click", (event) => {
+  //   event.preventDefault()
+  //   removeTitleContent.classList.toggle("pl-3")
+  //   h2.classList.toggle("hidden")
 
-    removeAllList.classList.toggle("hidden")
-    if (containerList.classList[8] === "w-full") {
-      containerList.classList.remove("w-full")
-      containerList.classList.add("w-16")
-    } else {
-      containerList.classList.add("w-full")
-      containerList.classList.remove("w-16")
-    }
-  })
+  //   removeAllList.classList.toggle("hidden")
+  //   if (containerList.classList[8] === "w-full") {
+  //     containerList.classList.remove("w-full")
+  //     containerList.classList.add("w-16")
+  //   } else {
+  //     containerList.classList.add("w-full")
+  //     containerList.classList.remove("w-16")
+  //   }
+  // })
 </script>
 <!-- <body class="flex bg-gray-dark">
   <aside class="relative w-screen h-screen sticky top-0  max-w-72 bg-blue-light p-8">
