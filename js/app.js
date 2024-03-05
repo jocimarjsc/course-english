@@ -6,36 +6,50 @@ const { playList, sidebar } = takeSelectors()
 
 const { toggleSidebar } = sidebar
 const { toggleListvideo } = playList
-let fullNamesLevelEnglish = []
+let widthWindow = window.innerWidth
 
 export function App() {
   const LocalstorageSidebar = getLocalStorage("sidebar")
   const LocalstoragePlayList = getLocalStorage("playList")
-
-  !LocalstorageSidebar ? setLocalStorage("sidebar", true) : null
-  !LocalstoragePlayList ? setLocalStorage("playList", true) : null
-
+  window.addEventListener("resize", updateSize)
+  
+  
+  if(LocalstorageSidebar === null && widthWindow <= 1024) {
+    setLocalStorage("sidebar", false)
+    
+    return
+  }
+  
+  if(LocalstorageSidebar === null && widthWindow >= 1024) {
+    setLocalStorage("sidebar", true)
+    return
+  }
+  if(LocalstorageSidebar === false && widthWindow >= 1024) {
+    setLocalStorage("sidebar", true)
+    return
+  }
+  console.log(LocalstorageSidebar)
+  
+  widthWindow <= 1024 ? setLocalStorage("sidebar",false) : setLocalStorage("sidebar",true)
   toggleSidebar.addEventListener("click", handleSidebar)
   toggleListvideo.addEventListener("click", handlePlayList)
 }
 
-function setLocalStorage(type, value) {
+function setLocalStorage(type, data) {
   const Localstorage = getLocalStorage(type)
 
-  if (!!Localstorage) {
-    localStorage.setItem(type, JSON.stringify(value === undefined ? false : value))
-    return
-  }
-
-  if(type === "sidebar"  && Localstorage === false) {
-    console.log("storage false")
+  if(type === "sidebar"  && Localstorage === data) {
     localStorage.setItem(type, JSON.stringify(true))
     return
   }
 
-  console.log("storage true")
-  localStorage.setItem(type, JSON.stringify(false))
+  if(type === "playList"  && Localstorage === data) {
+    localStorage.setItem(type, JSON.stringify(true))
+    return
+  }
 
+  localStorage.setItem(type, JSON.stringify(data))
+  return
 }
 
 function getLocalStorage(type) {
@@ -50,7 +64,7 @@ function handleSidebar(event) {
 
 function handlePlayList(event) {
   event.preventDefault()
-  setLocalStorage(playList.type)
+  setLocalStorage(playList.type, false)
   handleClick(playList)
 }
 
@@ -66,29 +80,14 @@ function handleClick(selectors) {
       levelEnglishArraySidebar,
       hiddenTitleSidebar
     } = selectors
-
-    fullNamesLevelEnglish.length !== 0 ? null : levelEnglishArraySidebar.forEach(e => fullNamesLevelEnglish.push(e.innerText))
-
-    const changeWidthSidebarArray = convertNodelistInArray(changeWidthSidebar.classList)
-
-    Toggle(titleSidebar, ["hidden"])
-    Toggle(hiddenTitleSidebar, ["pl-3"])
-    Toggle(levelEnglishSidebar, ["items-center", "justify-center"])
-
-    if (changeWidthSidebarArray.includes("w-full")) {
-      changeClass(changeWidthSidebar, "w-full", "w-16")
-
-      levelEnglishArraySidebar.forEach((level, index) => {
-        const [sigla, _] = level.innerText.split("-")
-        levelEnglishArraySidebar[index].innerText = sigla
-      })
-      return
-    }
-
-    changeClass(changeWidthSidebar, "w-16", "w-full")
-    fullNamesLevelEnglish.forEach((level, index) => {
-      levelEnglishArraySidebar[index].innerText = level
+    
+    levelEnglishArraySidebar.forEach(element => {
+      Toggle(element, ["lg:block"])
     })
+    Toggle(levelEnglishSidebar, ["lg:items-stretch", "lg:justify-stretch"])
+    Toggle(titleSidebar, ["lg:block"])
+    Toggle(changeWidthSidebar, ["lg:w-full"])
+    Toggle(hiddenTitleSidebar, ["lg:pl-3"])
     return
   }
 
@@ -111,4 +110,9 @@ function handleClick(selectors) {
   }
 
   changeClass(hiddenListVideo, "w-16", "w-full")
+}
+
+function updateSize() {
+  widthWindow = window.innerWidth
+  console.log(widthWindow)
 }

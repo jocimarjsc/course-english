@@ -11,8 +11,8 @@ export function takeSelectors() {
   const titleSidebar = widthSidebar.querySelector("h2")
   const toggleSidebar = document.querySelector("#buttonSidebar")
   const levelEnglishSidebar = document.querySelector("#listLevelEnglish")
-  const levelEnglishArraySidebar = convertNodelistInArray(levelEnglishSidebar.querySelectorAll("a"))
-  const hiddenTitleSidebar = widthSidebar.querySelector(".pl-3")
+  const levelEnglishArraySidebar = convertNodelistInArray(levelEnglishSidebar.querySelectorAll("a span span"))
+  const hiddenTitleSidebar = widthSidebar.querySelector(".lg\\:pl-3")
 
   return {
     playList: {
