@@ -15,15 +15,13 @@ export function App() {
   const LocalstoragePlayList = getLocalStorage("playList")
   window.addEventListener("resize", updateSize)
 
-  loadContentLevelEnglish("a1", listGrammar)
-  routes(sidebar.levelEnglishSidebar.querySelectorAll("a"))
-
+  
   if (LocalstorageSidebar === null && widthWindow <= 1024) {
     setLocalStorage("sidebar", false)
-
+    
     return
   }
-
+  
   if (LocalstorageSidebar === null && widthWindow >= 1024) {
     setLocalStorage("sidebar", true)
     return
@@ -32,12 +30,14 @@ export function App() {
     setLocalStorage("sidebar", true)
     return
   }
-
+  
   widthWindow <= 1024 ? setLocalStorage("sidebar", false) : setLocalStorage("sidebar", true)
   toggleSidebar.addEventListener("click", handleSidebar)
   toggleListvideo.addEventListener("click", handlePlayList)
   toggleSidebar.addEventListener("touchstart", handleSidebar)
   toggleListvideo.addEventListener("touchstart", handlePlayList)
+  loadContentLevelEnglish("A1- Iniciante", listGrammar)
+  routes(sidebar.levelEnglishSidebar.querySelectorAll("a"))
 }
 
 function routes(selectorRouteClick) {
@@ -51,6 +51,7 @@ function routesCLick(link) {
   link.addEventListener("click", level => {
     listGrammar.innerHTML = ""
     const title = link.innerText.replace("\n-", "-")
+    console.log(title)
     loadContentLevelEnglish(title, listGrammar)
   })
 }
