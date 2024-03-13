@@ -2,80 +2,21 @@ import { Toggle } from "./toggle.js";
 import { takeSelectors } from "./takeSelectors.js"
 import { convertNodelistInArray } from "./convertNodeListInArray.js"
 import { changeClass } from "./changeClass.js"
-import data from "../data/a1.json" assert { type: 'json' }
+import data from "../data/data.json" assert { type: 'json' }
 const { playList, sidebar } = takeSelectors()
 
 const { toggleSidebar } = sidebar
 const { toggleListvideo } = playList
 let widthWindow = window.innerWidth
+const listGrammar = document.querySelector("#listGrammar")
 
 export function App() {
   const LocalstorageSidebar = getLocalStorage("sidebar")
   const LocalstoragePlayList = getLocalStorage("playList")
   window.addEventListener("resize", updateSize)
 
-  const titleLessons = document.querySelector("#titleLessons")
-  const listGrammar = document.querySelector("#listGrammar")
-  const totalLessonGrammar = document.querySelector("#totalLessonGrammar")
-  const listVocabulary = document.querySelector("#listVocabulary")
-  const totalLessonVocabulary = document.querySelector("#totalLessonVocabulary")
-  const listTopics = document.querySelector("#listTopics")
-  const totalLessonTopics = document.querySelector("#totalLessonTopics")
-
-  const iframeVideo = document.querySelector("#iframeVideo")
-
-  const listLevelArray = Array.from(sidebar.levelEnglishSidebar.querySelectorAll("a"))
-  
-  listLevelArray.forEach(link => {
-    link.addEventListener("click", level => {
-      listGrammar.innerHTML = ""
-      const { a1 } = data
-      const title = link.innerText.replace("\n-", "-")
-      titleLessons.innerText = title
-
-      totalLessonGrammar.innerText = `${a1.gramatica.length} aulas`
-      totalLessonVocabulary.innerText = `${a1.vocabulario.length} aulas`
-      totalLessonTopics.innerText = `${a1.topicos.length} aulas`
-
-      a1.gramatica.forEach(element => {
-        const elementLi = document.createElement("li")
-        const [https, _, baseUrlYoutube, embed, id] = element.embed.split("/")
-        elementLi.setAttribute("class", "mb-1 p-4 rounded cursor-pointer transition duration-150 ease-out hover:ease-in hover:bg-slate-800")
-        elementLi.setAttribute("id", id)
-        elementLi.innerText = element.title
-        listGrammar.append(elementLi)
-      })
-
-      a1.vocabulario.forEach(element => {
-        const elementLi = document.createElement("li")
-        const [https, _, baseUrlYoutube, embed, id] = element.embed.split("/")
-        elementLi.setAttribute("id", id)
-        elementLi.setAttribute("class", "mb-1 p-4 rounded cursor-pointer transition duration-150 ease-out hover:ease-in hover:bg-slate-800")
-        elementLi.innerText = element.title
-        listVocabulary.append(elementLi)
-      })
-
-      a1.topicos.forEach(element => {
-        const elementLi = document.createElement("li")
-        const [https, _, baseUrlYoutube, embed, id] = element.embed.split("/")
-        elementLi.setAttribute("id", id)
-        elementLi.setAttribute("class", "mb-1 p-4 rounded cursor-pointer transition duration-150 ease-out hover:ease-in hover:bg-slate-800")
-        elementLi.innerText = element.title
-        listTopics.append(elementLi)
-      })
-
-      const listLessonGrammar = Array.from(listGrammar.querySelectorAll("li"))
-      listLessonGrammar.forEach(element => {
-        element.addEventListener("click", el => {
-          iframeVideo.src = `https://www.youtube.com/embed/${element.id}`
-          console.log(element.id)
-        })
-      })
-    })
-  })
-  
-
-
+  loadContentLevelEnglish("a1", listGrammar)
+  routes(sidebar.levelEnglishSidebar.querySelectorAll("a"))
 
   if (LocalstorageSidebar === null && widthWindow <= 1024) {
     setLocalStorage("sidebar", false)
@@ -91,11 +32,85 @@ export function App() {
     setLocalStorage("sidebar", true)
     return
   }
-  console.log(LocalstorageSidebar)
 
   widthWindow <= 1024 ? setLocalStorage("sidebar", false) : setLocalStorage("sidebar", true)
   toggleSidebar.addEventListener("click", handleSidebar)
   toggleListvideo.addEventListener("click", handlePlayList)
+  toggleSidebar.addEventListener("touchstart", handleSidebar)
+  toggleListvideo.addEventListener("touchstart", handlePlayList)
+}
+
+function routes(selectorRouteClick) {
+  const listLevelArray = convertNodelistInArray(selectorRouteClick)
+  listLevelArray.forEach(routesCLick)
+}
+
+function routesCLick(link) {
+  const listGrammar = document.querySelector("#listGrammar")
+
+  link.addEventListener("click", level => {
+    listGrammar.innerHTML = ""
+    const title = link.innerText.replace("\n-", "-")
+    loadContentLevelEnglish(title, listGrammar)
+  })
+}
+
+function loadContentLevelEnglish(title, listGrammar) {
+  const [shortTitle, _] = title.split("-")
+  const dataLesson = data[shortTitle.toLowerCase()]
+  const titleLessons = document.querySelector("#titleLessons")
+  const totalLessonGrammar = document.querySelector("#totalLessonGrammar")
+  const listVocabulary = document.querySelector("#listVocabulary")
+  const totalLessonVocabulary = document.querySelector("#totalLessonVocabulary")
+  const listTopics = document.querySelector("#listTopics")
+  const totalLessonTopics = document.querySelector("#totalLessonTopics")
+
+  const iframeVideo = document.querySelector("#iframeVideo")
+  titleLessons.innerText = title
+
+  totalLessonGrammar.innerText = `${dataLesson.gramatica.length} aulas`
+  totalLessonVocabulary.innerText = `${dataLesson.vocabulario.length} aulas`
+  totalLessonTopics.innerText = `${dataLesson.topicos.length} aulas`
+
+  dataLesson.gramatica.forEach(element => {
+    const elementLi = document.createElement("li")
+    const [https, _, baseUrlYoutube, embed, id] = element.embed.split("/")
+    elementLi.setAttribute("class", "mb-1 p-4 rounded-lg cursor-pointer transition duration-150 ease-out hover:ease-in hover:bg-slate-900")
+    elementLi.setAttribute("id", id)
+    elementLi.innerText = element.title
+    listGrammar.append(elementLi)
+  })
+
+  dataLesson.vocabulario.forEach(element => {
+    const elementLi = document.createElement("li")
+    const [https, _, baseUrlYoutube, embed, id] = element.embed.split("/")
+    elementLi.setAttribute("id", id)
+    elementLi.setAttribute("class", "mb-1 p-4 rounded cursor-pointer transition duration-150 ease-out hover:ease-in hover:bg-slate-800")
+    elementLi.innerText = element.title
+    listVocabulary.append(elementLi)
+  })
+
+  dataLesson.topicos.forEach(element => {
+    const elementLi = document.createElement("li")
+    const [https, _, baseUrlYoutube, embed, id] = element.embed.split("/")
+    elementLi.setAttribute("id", id)
+    elementLi.setAttribute("class", "mb-1 p-4 rounded cursor-pointer transition duration-150 ease-out hover:ease-in hover:bg-slate-800")
+    elementLi.innerText = element.title
+    listTopics.append(elementLi)
+  })
+
+  const listLessonGrammar = convertNodelistInArray(listGrammar.querySelectorAll("li"))
+  let lastClick
+  listLessonGrammar.forEach((element, index) => {
+    element.addEventListener("click", event => {
+      if (lastClick !== undefined) {
+        lastClick.classList.remove("bg-slate-900")
+      }
+      lastClick = element
+      event.target.classList.add("bg-slate-900")
+      iframeVideo.src = `https://www.youtube.com/embed/${element.id}`
+    })
+  })
 }
 
 function setLocalStorage(type, data) {
