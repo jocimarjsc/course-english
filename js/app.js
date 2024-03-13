@@ -36,7 +36,7 @@ export function App() {
   toggleListvideo.addEventListener("click", handlePlayList)
   toggleSidebar.addEventListener("touchstart", handleSidebar)
   toggleListvideo.addEventListener("touchstart", handlePlayList)
-  loadContentLevelEnglish("A1- Iniciante", listGrammar)
+  loadContentLevelEnglish("A1-Iniciante", listGrammar)
   routes(sidebar.levelEnglishSidebar.querySelectorAll("a"))
 }
 
