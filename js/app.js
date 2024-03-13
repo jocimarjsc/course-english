@@ -34,24 +34,33 @@ export function App() {
   widthWindow <= 1024 ? setLocalStorage("sidebar", false) : setLocalStorage("sidebar", true)
   toggleSidebar.addEventListener("click", handleSidebar)
   toggleListvideo.addEventListener("click", handlePlayList)
-  toggleSidebar.addEventListener("touchstart", handleSidebar)
-  toggleListvideo.addEventListener("touchstart", handlePlayList)
+  toggleSidebar.addEventListener("touch", handleSidebar)
+  toggleListvideo.addEventListener("touch", handlePlayList)
   loadContentLevelEnglish("A1-Iniciante", listGrammar)
   routes(sidebar.levelEnglishSidebar.querySelectorAll("a"))
 }
 
 function routes(selectorRouteClick) {
   const listLevelArray = convertNodelistInArray(selectorRouteClick)
+  let lastClick
+  listLevelArray.forEach((element, index) => {
+    element.addEventListener("click", event => {
+      if (lastClick !== undefined) {
+        lastClick.classList.remove("bg-slate-900")
+      }
+      lastClick = element
+      element.classList.add("bg-slate-900")
+    })
+  })
   listLevelArray.forEach(routesCLick)
 }
 
 function routesCLick(link) {
   const listGrammar = document.querySelector("#listGrammar")
-
-  link.addEventListener("click", level => {
+  
+  link.addEventListener("click", event => {
     listGrammar.innerHTML = ""
     const title = link.innerText.replace("\n-", "-")
-    console.log(title)
     loadContentLevelEnglish(title, listGrammar)
   })
 }
@@ -86,7 +95,7 @@ function loadContentLevelEnglish(title, listGrammar) {
     const elementLi = document.createElement("li")
     const [https, _, baseUrlYoutube, embed, id] = element.embed.split("/")
     elementLi.setAttribute("id", id)
-    elementLi.setAttribute("class", "mb-1 p-4 rounded cursor-pointer transition duration-150 ease-out hover:ease-in hover:bg-slate-800")
+    elementLi.setAttribute("class", "mb-1 p-4 rounded-lg cursor-pointer transition duration-150 ease-out hover:ease-in hover:bg-slate-900")
     elementLi.innerText = element.title
     listVocabulary.append(elementLi)
   })
@@ -95,14 +104,39 @@ function loadContentLevelEnglish(title, listGrammar) {
     const elementLi = document.createElement("li")
     const [https, _, baseUrlYoutube, embed, id] = element.embed.split("/")
     elementLi.setAttribute("id", id)
-    elementLi.setAttribute("class", "mb-1 p-4 rounded cursor-pointer transition duration-150 ease-out hover:ease-in hover:bg-slate-800")
+    elementLi.setAttribute("class", "mb-1 p-4 rounded-lg cursor-pointer transition duration-150 ease-out hover:ease-in hover:bg-slate-900")
     elementLi.innerText = element.title
     listTopics.append(elementLi)
   })
 
   const listLessonGrammar = convertNodelistInArray(listGrammar.querySelectorAll("li"))
+  const listLessonVocabulary = convertNodelistInArray(listVocabulary.querySelectorAll("li"))
+  const listLessonTopics = convertNodelistInArray(listTopics.querySelectorAll("li"))
+
   let lastClick
   listLessonGrammar.forEach((element, index) => {
+    element.addEventListener("click", event => {
+      if (lastClick !== undefined) {
+        lastClick.classList.remove("bg-slate-900")
+      }
+      lastClick = element
+      event.target.classList.add("bg-slate-900")
+      iframeVideo.src = `https://www.youtube.com/embed/${element.id}`
+    })
+  })
+
+  listLessonVocabulary.forEach((element, index) => {
+    element.addEventListener("click", event => {
+      if (lastClick !== undefined) {
+        lastClick.classList.remove("bg-slate-900")
+      }
+      lastClick = element
+      event.target.classList.add("bg-slate-900")
+      iframeVideo.src = `https://www.youtube.com/embed/${element.id}`
+    })
+  })
+
+  listLessonTopics.forEach((element, index) => {
     element.addEventListener("click", event => {
       if (lastClick !== undefined) {
         lastClick.classList.remove("bg-slate-900")
